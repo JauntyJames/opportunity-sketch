@@ -18,6 +18,13 @@
     <div role="main" class="oj-hybrid-applayout-content">
       <div class="oj-hybrid-padding">
         <h1>Dashboard Content Area</h1>
+        <new-sticky id="sticky1"></new-sticky>
+        <div id="div1">
+          <oj-label for="text-area">oj-text-area component</oj-label><br/>
+          <oj-text-area id="text-area" value="{{value}}"></oj-text-area>
+          <span class="oj-label">Current component value is:</span>
+          <span data-bind="text: value"></span>
+        </div>
         <div>
             To change the content of this section, you will make edits to the dashboard.html file located in the /js/views folder.
         </div>

@@ -6,9 +6,9 @@
 /*
  * Your dashboard ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'appController', 'ojs/ojmodule-element-utils'],
+define(['ojs/ojcore', 'knockout', 'jquery', 'appController', 'ojs/ojmodule-element-utils', 'jet-composites/new-sticky/loader'],
  function(oj, ko, $, app, moduleUtils) {
-  
+
     function DashboardViewModel() {
       var self = this;
 
@@ -24,9 +24,9 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'appController', 'ojs/ojmodule-eleme
       /**
        * Optional ViewModel method invoked after the View is inserted into the
        * document DOM.  The application can put logic that requires the DOM being
-       * attached here. 
-       * This method might be called multiple times - after the View is created 
-       * and inserted into the DOM and after the View is reconnected 
+       * attached here.
+       * This method might be called multiple times - after the View is created
+       * and inserted into the DOM and after the View is reconnected
        * after being disconnected.
        */
       self.connected = function() {
