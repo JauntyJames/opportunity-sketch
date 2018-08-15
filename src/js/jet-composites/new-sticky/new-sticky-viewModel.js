@@ -12,18 +12,12 @@ define([
     'ojs/ojlistview',
     'ojs/ojarraydataprovider',
     'ojs/ojbutton',
-    'ojs/ojinputtext'
+    'ojs/ojinputtext',
+    'ojs/ojselectcombobox',
+    'ojs/ojslider'
     ], function (oj, ko, $, componentStrings) {
 
-    // function Sticky(stickyText, stickyCategory) {
-    //     let self = this;
-
-    //     self.stickyText = stickyText;
-    //     self.stickyCategory = stickyCategory;
-    // }
-
     function StickyModel() {
-        var self = this;
 
         //At the start of your viewModel constructor
         // var busyContext = oj.Context.getContext(context.element).getBusyContext();
@@ -37,32 +31,57 @@ define([
         // self.properties = context.properties;
         // self.res = componentStrings['new-sticky'];
 
-        this.itemToAdd = ko.observable("hey");
-        this.allItems = ko.observableArray([
-            {id: 1, text: "Poo Tee Weet", category: "Gains"}
-        ])
+        this.itemToAdd = ko.observable("");
+        this.allItems = ko.observableArray([])
 
-        let lastItemId = this.allItems().length;
+        this.category = ko.observable("Gain")
 
-        this.dataProvider = new oj.ArrayDataProvider(this.allItems, {'keyAttributes': 'id'});
+        this.selectedItems = ko.observableArray([]);
 
+        // this.gainItems = this.allItems().filter(item => item.category == 'Gain')
+        // this.painItems = this.allItems().filter(item => item.category == 'Pain')
+        // this.jobItems = this.allItems().filter(item => item.category == 'Job')
+        this.painItems = ko.observableArray([]);
+        this.gainItems = ko.observableArray([]);
+        this.jobItems = ko.observableArray([]);
+
+
+        this.gainProvider = new oj.ArrayDataProvider(this.gainItems, {'keyAttributes': 'id'});
+        this.painProvider = new oj.ArrayDataProvider(this.painItems, {'keyAttributes': 'id'});
+        this.jobProvider = new oj.ArrayDataProvider(this.jobItems, {'keyAttributes': 'id'});
+
+        var lastItemId = this.allItems().length;
+        var self = this;
         this.addItem = () => {
             if ((self.itemToAdd() != "") && (self.allItems.indexOf(self.itemToAdd()) < 0)) {
                 lastItemId++;
-                self.allItems.push({id: lastItemId, text: self.itemToAdd()});
+                if (self.category() === "Gain") {
+                    self.gainItems.push({'id': lastItemId, 'text': self.itemToAdd(), 'category': self.category(), 'value': ko.observable(4)});
+                } else if (self.category() === "Pain") {
+                    self.painItems.push({'id': lastItemId, 'text': self.itemToAdd(), 'category': self.category(), 'value': ko.observable(4)});
+                } else if (self.category() === "Job") {
+                    self.jobItems.push({'id': lastItemId, 'text': self.itemToAdd(), 'category': self.category(), 'value': ko.observable(4)});
+                }
             }
             self.itemToAdd("");
         }
-        // self.stickies = ko.observableArray([
-        //     new Sticky("Hello World!", "Gains")
-        // ]);
-        // // Example for parsing context properties
-        // if (context.properties.name) {
-        //     parse the context properties here
-        // }
 
-        //Once all startup and async activities have finished, relocate if there are any async activities
-        // self.busyResolve();
+        this.removeSelected = () => {
+            $.each(self.selectedItems(), function(index, value) {
+                self.gainItems.remove((item) => {
+                    if ( item.category === "Gain" )
+                    return (item.id == value);
+                });
+                self.painItems.remove((item) => {
+                    if ( item.category === "Pain" )
+                    return (item.id == value);
+                });
+                self.jobItems.remove((item) => {
+                    if ( item.category === "Job" )
+                    return (item.id == value);
+                });
+            });
+        }
     };
 
     //Lifecycle methods - uncomment and implement if necessary
@@ -80,9 +99,9 @@ define([
 
     //ExampleComponentModel.prototype.propertyChanged = function(context){
     //};
-    $( function() {
-        ko.applyBindings(new StickyModel(document.getElementById('listViewContainer')), document.getElementById('listViewContainer'))
-    })
+    // $( function() {
+    //     ko.applyBindings(new StickyModel(), document.getElementById('listViewContainer'))
+    // })
 
     return StickyModel;
 });

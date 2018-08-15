@@ -64,7 +64,9 @@ require([
   'ojs/ojlistview',
   'ojs/ojarraydataprovider',
   'ojs/ojbutton',
-  'ojs/ojinputtext'
+  'ojs/ojinputtext',
+  'ojs/ojselectcombobox',
+  'ojs/ojslider'
 ], function (oj, ko, app) { // this callback gets executed when all required modules are loaded
 
     $(function() {

@@ -4,11 +4,79 @@
 -->
 <div id="listViewContainer">
 
-  <oj-input-text id="inputSticky" value="{{itemToAdd}}"></oj-input-text>
-  <oj-list-view id="stickylist" aria-label="list using obervable array" data="[[dataProvider]]">
-    <template slot="itemTemplate">
-      <oj-bind-text value='[[$current.data.text]]'>poo tee weet</oj-bind-text>
-    </template>
-  </oj-list-view>
+  <div id="listViewContainer">
+    <div class='oj-flex-bar'>
+      <div class='oj-flex-bar-start'>
+        <label for="inputItem" class="oj-label-inline">Add item to the end:</label>
+      </div>
+      <div class='oj-flex-bar-middle'>
+        <oj-input-text id="inputItem" value="{{itemToAdd}}">
+        </oj-input-text>
+      </div>
+      <div class="oj-flex-bar-middle">
+        <oj-label for="categorySelect">Category</oj-label>
+        <oj-select-one id="categorySelect" value="{{category}}" style="max-width:20em">
+          <oj-option value="Gain">Gain</oj-option>
+          <oj-option value="Pain">Pain</oj-option>
+          <oj-option value="Job">Job</oj-option>
+        </oj-select-one>
+      </div>
+    </div>
+    <oj-button id="addButton" on-oj-action="[[addItem]]">Add</oj-button>
+    <oj-button id="removeButton" on-oj-action="[[removeSelected]]">Remove</oj-button>
+
+    <div class="oj-flex">
+
+      <oj-list-view id="listview" aria-label="list using observable array" data="[[gainProvider]]" selection-mode="multiple" selection="{{selectedItems}}">
+        <template slot="itemTemplate">
+          <div class="oj-panel oj-panel-alt3 oj-sm-margin-2x" >
+            <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+            <br>
+            <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+            <div id="slider-container">
+              <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+              <span> Value:
+                <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+              </span>
+            </div>
+          </div>
+        </template>
+      </oj-list-view>
+      <hr>
+      <oj-list-view id="listview" aria-label="list using observable array" data="[[painProvider]]" selection-mode="multiple" selection="{{selectedItems}}">
+        <template slot="itemTemplate">
+          <div class="oj-panel oj-panel-alt3 oj-sm-margin-2x" style="width:150px;height:150px;">
+            <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+            <br>
+            <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+          </div>
+          <div id="slider-container">
+              <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+              <span> Value:
+                <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+              </span>
+            </div>
+        </template>
+      </oj-list-view>
+      <hr>
+      <oj-list-view id="listview" aria-label="list using observable array" data="[[jobProvider]]" selection-mode="multiple" selection="{{selectedItems}}">
+        <template slot="itemTemplate">
+          <div class="oj-panel oj-panel-alt3 oj-sm-margin-2x" style="width:150px;height:150px;">
+            <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+            <br>
+            <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+          </div>
+          <div id="slider-container">
+              <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+              <span> Value:
+                <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+              </span>
+            </div>
+        </template>
+      </oj-list-view>
+    </div>
+
+  </div>
+
 
 </div>
