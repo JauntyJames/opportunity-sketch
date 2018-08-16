@@ -18,7 +18,7 @@
         <oj-select-one id="categorySelect" value="{{category}}" style="max-width:20em">
           <oj-option value="Gain">Gain</oj-option>
           <oj-option value="Pain">Pain</oj-option>
-          <oj-option value="Job">Job</oj-option>
+          <oj-option value="Job">Customer Job</oj-option>
         </oj-select-one>
       </div>
     </div>
@@ -30,7 +30,7 @@
       <oj-list-view id="listview" aria-label="list using observable array" data="[[gainProvider]]" selection-mode="multiple" selection="{{selectedItems}}">
         <template slot="itemTemplate">
           <div class="oj-panel oj-panel-alt3 oj-sm-margin-2x" >
-            <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+            <oj-bind-text value='[[$current.data.category]]' style="width:150px;height:150px;"></oj-bind-text>
             <br>
             <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
             <div id="slider-container">

@@ -33,9 +33,7 @@ define([
 
         this.itemToAdd = ko.observable("");
         this.allItems = ko.observableArray([])
-
         this.category = ko.observable("Gain")
-
         this.selectedItems = ko.observableArray([]);
 
         // this.gainItems = this.allItems().filter(item => item.category == 'Gain')
