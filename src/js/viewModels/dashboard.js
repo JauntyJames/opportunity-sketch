@@ -25,6 +25,7 @@ define([
   function DashboardViewModel() {
     var self = this;
 
+    // page 1 data
     this.itemToAdd = ko.observable("");
     this.allItems = ko.observableArray([])
     this.category = ko.observable("Gain")
@@ -33,13 +34,38 @@ define([
     this.painItems = ko.observableArray([]);
     this.gainItems = ko.observableArray([]);
     this.jobItems = ko.observableArray([]);
+    this.doot = ko.observable("doot");
 
     this.gainProvider = new oj.ArrayDataProvider(this.gainItems, { 'keyAttributes': 'id' });
     this.painProvider = new oj.ArrayDataProvider(this.painItems, { 'keyAttributes': 'id' });
     this.jobProvider = new oj.ArrayDataProvider(this.jobItems, { 'keyAttributes': 'id' });
 
+    // page 2 data
+    this.itemToAdd2 = ko.observable("two");
+    this.category2 = ko.observable("Gain Creator");
+    this.selectedItems2 = ko.observable("");
+
+    this.gainCreators = ko.observableArray([]);
+    this.painRelievers = ko.observableArray([]);
+    this.productsServices = ko.observableArray([]);
+
+    this.gainCreatorsProvider = new oj.ArrayDataProvider(this.gainCreators, { 'keyAttributes': 'id' });
+    this.painRelieversProvider = new oj.ArrayDataProvider(this.painRelievers, { 'keyAttributes': 'id' });
+    this.productsServicesProvider = new oj.ArrayDataProvider(this.productsServices, { 'keyAttributes': 'id' });
+
+    // page 3 data
+    this.madlibSolution = ko.observable("");
+    this.madlibSegment = ko.observable("");
+    this.madlibTask = ko.observable("");
+    this.madlibPainVerb = ko.observable("");
+    this.madlibPainPhrase = ko.observable("");
+    this.madlibGainVerb = ko.observable("");
+    this.madlibGainPhrase = ko.observable("");
+    this.madlibCompeting = ko.observable("");
+
     var lastItemId = this.allItems().length;
     var self = this;
+
     this.addItem = () => {
       if ((self.itemToAdd() != "") && (self.allItems.indexOf(self.itemToAdd()) < 0)) {
         lastItemId++;
@@ -49,6 +75,21 @@ define([
           self.painItems.push({ 'id': lastItemId, 'text': self.itemToAdd(), 'category': self.category(), 'value': ko.observable(4) });
         } else if (self.category() === "Job") {
           self.jobItems.push({ 'id': lastItemId, 'text': self.itemToAdd(), 'category': self.category(), 'value': ko.observable(4) });
+        }
+      }
+      self.itemToAdd("");
+    }
+
+    this.addItem2 = () => {
+      // debugger
+      if ((self.itemToAdd2() != "") && (self.allItems.indexOf(self.itemToAdd2()) < 0)) {
+        lastItemId++;
+        if (self.category2() === "Gain Creators") {
+          self.gainCreators.push({ 'id': lastItemId, 'text': self.itemToAdd2(), 'category': self.category2(), 'value': ko.observable(4) });
+        } else if (self.category2() === "Pain Relievers") {
+          self.painRelievers.push({ 'id': lastItemId, 'text': self.itemToAdd2(), 'category': self.category2(), 'value': ko.observable(4) });
+        } else if (self.category2() === "Products and Services") {
+          self.productsServices.push({ 'id': lastItemId, 'text': self.itemToAdd2(), 'category': self.category2(), 'value': ko.observable(4) });
         }
       }
       self.itemToAdd("");
@@ -70,6 +111,23 @@ define([
         });
       });
     }
+    this.removeSelected2 = () => {
+      $.each(self.selectedItems(), function (index, value) {
+        self.gainCreators.remove((item) => {
+          if (item.category === "Gain Creators")
+            return (item.id == value);
+        });
+        self.painRelievers.remove((item) => {
+          if (item.category === "Pain Relievers")
+            return (item.id == value);
+        });
+        self.productsServices.remove((item) => {
+          if (item.category === "Products and Services")
+            return (item.id == value);
+        });
+      });
+    }
+
   };
   // Header Config
   self.headerConfig = ko.observable({ 'view': [], 'viewModel': null });

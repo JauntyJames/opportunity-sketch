@@ -94,6 +94,16 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
         if (bottomElem) {
           contentElem.style.paddingBottom = bottomElem.offsetHeight+'px';
         }
+
+        // Global data
+
+    // self.painItems = ko.observableArray([]);
+    // self.gainItems = ko.observableArray([]);
+    // self.jobItems = ko.observableArray([]);
+
+    // self.gainProvider = new oj.ArrayDataProvider(self.gainItems, { 'keyAttributes': 'id' });
+    // self.painProvider = new oj.ArrayDataProvider(self.painItems, { 'keyAttributes': 'id' });
+    // self.jobProvider = new oj.ArrayDataProvider(self.jobItems, { 'keyAttributes': 'id' });
         // Add oj-complete marker class to signal that the content area can be unhidden.
         // See the override.css file to see when the content area is hidden.
         contentElem.classList.add('oj-complete');
