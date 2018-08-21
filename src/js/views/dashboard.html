@@ -2,9 +2,9 @@
  Copyright (c) 2014, 2018, Oracle and/or its affiliates.
  The Universal Permissive License (UPL), Version 1.0
  -->
-<div class="oj-hybrid-applayout-page">
+<div class="oj-hybrid-applayout-page" id="dashboard">
   <div class="oj-applayout-fixed-top">
-      <!--
+    <!--
        ** Oracle JET V5.1.0 hybrid mobile application header pattern.
        ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
        ** more information on how to use this pattern.
@@ -15,11 +15,223 @@
   </div>
   <!-- This is where your main page content will be loaded -->
   <div class="oj-applayout-content">
+    <!-- <div data-bind="text: $root.doot"></div> -->
     <div role="main" class="oj-hybrid-applayout-content">
       <div class="oj-hybrid-padding">
-        <h1>Dashboard Content Area</h1>
-        <div>
-            To change the content of this section, you will make edits to the dashboard.html file located in the /js/views folder.
+        <h1>Customer Context</h1>
+        <!-- <new-sticky id="sticky1"></new-sticky> -->
+
+
+        <div id="listViewContainer">
+          <div class='oj-flex-bar'>
+            <div class='oj-flex-bar-start'>
+              <label for="inputItem" class="oj-label-inline">Add item to the end:</label>
+            </div>
+            <div class='oj-flex-bar-middle'>
+              <oj-input-text id="inputItem" value="{{itemToAdd}}">
+              </oj-input-text>
+            </div>
+            <div class="oj-flex-bar-middle">
+              <oj-label for="categorySelect">Category</oj-label>
+              <oj-select-one id="categorySelect" value="{{category}}" style="max-width:20em">
+                <oj-option value="Gain">Gain</oj-option>
+                <oj-option value="Pain">Pain</oj-option>
+                <oj-option value="Job">Customer Job</oj-option>
+              </oj-select-one>
+            </div>
+          </div>
+          <oj-button id="addButton" on-oj-action="[[addItem]]">Add</oj-button>
+          <oj-button id="removeButton" on-oj-action="[[removeSelected]]">Remove</oj-button>
+
+          <div class="oj-flex">
+
+            <oj-list-view id="listview" aria-label="list using observable array" data="[[gainProvider]]" selection-mode="multiple" selection="{{selectedItems}}">
+              <template slot="itemTemplate">
+                <div class="oj-panel oj-panel-alt2 oj-sm-margin-2x" style="width:150px;height:150px;">
+                  <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+                  <br>
+                  <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+                </div>
+                <div id="slider-container">
+                  <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+                  <span> Value:
+                    <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+                  </span>
+                </div>
+              </template>
+            </oj-list-view>
+            <oj-list-view id="listview" aria-label="list using observable array" data="[[painProvider]]" selection-mode="multiple" selection="{{selectedItems}}">
+              <template slot="itemTemplate">
+                <div class="oj-panel oj-panel-alt4 oj-sm-margin-2x" style="width:150px;height:150px;">
+                  <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+                  <br>
+                  <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+                </div>
+                <div id="slider-container">
+                  <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+                  <span> Value:
+                    <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+                  </span>
+                </div>
+              </template>
+            </oj-list-view>
+            <oj-list-view id="listview" aria-label="list using observable array" data="[[jobProvider]]" selection-mode="multiple" selection="{{selectedItems}}">
+              <template slot="itemTemplate">
+                <div class="oj-panel oj-panel-alt3 oj-sm-margin-2x" style="width:150px;height:150px;">
+                  <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+                  <br>
+                  <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+                </div>
+                <div id="slider-container">
+                  <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+                  <span> Value:
+                    <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+                  </span>
+                </div>
+              </template>
+            </oj-list-view>
+          </div>
+
+        </div>
+
+        <!-- <div id="div1">
+          <oj-label for="text-area"></oj-label>
+          <br/>
+          <oj-text-area id="text-area" value="{{value}}"></oj-text-area>
+          <span class="oj-label"></span>
+          <span data-bind="text: value"></span>
+        </div> -->
+
+      </div>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <div>
+      <div role="main" class="oj-hybrid-applayout-content">
+        <div class="oj-hybrid-padding">
+
+          <h1>Proposition</h1>
+          <div id="listViewContainer2">
+            <div class='oj-flex-bar'>
+              <div class='oj-flex-bar-start'>
+                <label for="inputItem2" class="oj-label-inline">Add item to the end:</label>
+              </div>
+              <div class='oj-flex-bar-middle'>
+                <oj-input-text id="inputItem2" value="{{itemToAdd2}}">
+                </oj-input-text>
+              </div>
+              <div class="oj-flex-bar-middle">
+                <oj-label for="categorySelect2">Category</oj-label>
+                <oj-select-one id="categorySelect2" value="{{category2}}" style="max-width:20em">
+                  <oj-option value="Gain Creators">Gain Creators</oj-option>
+                  <oj-option value="Pain Relievers">Pain Relievers</oj-option>
+                  <oj-option value="Products and Services">Products and Services</oj-option>
+                </oj-select-one>
+              </div>
+            </div>
+            <oj-button id="addButton2" on-oj-action="[[addItem2]]">Add</oj-button>
+            <oj-button id="removeButton2" on-oj-action="[[removeSelected2]]">Remove</oj-button>
+
+            <div class="oj-flex">
+
+              <oj-list-view id="listview" aria-label="list using observable array" data="[[gainCreatorsProvider]]" selection-mode="multiple"
+                selection="{{selectedItems}}">
+                <template slot="itemTemplate">
+                  <div class="oj-panel oj-panel-alt3 oj-sm-margin-2x" style="width:150px;height:150px;">
+                    <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+                    <br>
+                    <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+                  </div>
+                  <div id="slider-container">
+                    <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+                    <span> Value:
+                      <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+                    </span>
+                  </div>
+                </template>
+              </oj-list-view>
+              <oj-list-view id="listview" aria-label="list using observable array" data="[[painRelieversProvider]]" selection-mode="multiple"
+                selection="{{selectedItems}}">
+                <template slot="itemTemplate">
+                  <div class="oj-panel oj-panel-alt5 oj-sm-margin-2x" style="width:150px;height:150px;">
+                    <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+                    <br>
+                    <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+                  </div>
+                  <div id="slider-container">
+                    <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+                    <span> Value:
+                      <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+                    </span>
+                  </div>
+                </template>
+              </oj-list-view>
+              <oj-list-view id="listview" aria-label="list using observable array" data="[[productsServicesProvider]]" selection-mode="multiple"
+                selection="{{selectedItems}}">
+                <template slot="itemTemplate">
+                  <div class="oj-panel oj-panel-alt2 oj-sm-margin-2x" style="width:150px;height:150px;">
+                    <oj-bind-text value='[[$current.data.category]]'></oj-bind-text>
+                    <br>
+                    <oj-bind-text value='[[$current.data.text]]'></oj-bind-text>
+                  </div>
+                  <div id="slider-container">
+                    <oj-slider id="slider" value="{{$current.data.value}}" min="1" max="6" step="1"> </oj-slider>
+                    <span> Value:
+                      <oj-bind-text id="value" value="[[$current.data.value]]"></oj-bind-text>
+                    </span>
+                  </div>
+                </template>
+              </oj-list-view>
+            </div>
+          </div>
+<!--
+          <br>
+          <br>
+          <hr>
+          <br>
+          <h1>Vision Hypothesis</h1>
+          <span id="madlib" style="font-size:1.5em">
+            Our
+            <oj-select-one value="{{madlibSolution}}" style="max-width:20em">
+              <oj-option value=" "> </oj-option>
+              <oj-option value="Autonomous DB">Autonomous DB</oj-option>
+            </oj-select-one>
+            help(s)
+            <oj-select-one value="{{madlibSegment}}" style="max-width:20em">
+              <oj-option value=" "> </oj-option>
+              <oj-option value="Business Professionals">Business Professionals</oj-option>
+              <oj-option value="Database Administrators">Database Administrators</oj-option>
+              <oj-option value="infrastructure administrators">infrastructure administrators</oj-option>
+              <oj-option value="Line of Business professionals">Line of Business professionals</oj-option>
+            </oj-select-one>
+            who want to
+            <oj-select-one value="{{madlibTask}}" style="max-width:20em">
+              <oj-option value=" "> </oj-option>
+              <oj-option value="improve business reliability">improve business reliability</oj-option>
+            </oj-select-one>
+            by
+            <oj-select-one value="{{madlibPainVerb}}" style="max-width:20em">
+              <oj-option value=" "> </oj-option>
+              <oj-option value="avoiding">avoiding</oj-option>
+            </oj-select-one>
+            <oj-select-one value="{{madlibPainPhrase}}" style="max-width:20em">
+                <oj-option value=" "> </oj-option>
+                <oj-option value="unnecessary additional costs">unnecessary additional costs</oj-option>
+            </oj-select-one>
+             and
+            <oj-select-one value="{{madlibTask}}" style="max-width:20em">
+                <oj-option value=" "> </oj-option>
+                <oj-option value="increasing">increasing</oj-option>
+            </oj-select-one>
+            <oj-select-one value="{{madlibTask}}" style="max-width:20em">
+                <oj-option value=" "> </oj-option>
+                <oj-option value="business security profile">business security profile</oj-option>
+            </oj-select-one>
+             . Unlike (competing value proposition).
+          </span>
+      -->
         </div>
       </div>
     </div>

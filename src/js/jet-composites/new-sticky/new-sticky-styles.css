@@ -1,0 +1,8 @@
+new-sticky:not(.oj-complete){
+  visibility: hidden;
+}
+
+new-sticky{
+	min-height: 50px;
+	width: 50px;
+}

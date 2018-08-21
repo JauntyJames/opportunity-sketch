@@ -17,9 +17,47 @@
   <div class="oj-applayout-content">
     <div role="main" class="oj-hybrid-applayout-content">
       <div class="oj-hybrid-padding">
-        <h1>Customers Content Area</h1>
+        <h1>Vision Hypothesis</h1>
         <div>
-            To change the content of this section, you will make edits to the customers.html file located in the /js/views folder.
+          <span id="madlib" style="font-size:1.5em">
+            Our
+            <oj-select-one value="{{madlibSolution}}" style="max-width:20em">
+              <oj-option value=" ">(product or service)</oj-option>
+              <oj-option value="Autonomous DB">Autonomous DB</oj-option>
+            </oj-select-one>
+            help(s)
+            <oj-select-one value="{{madlibSegment}}" style="max-width:20em">
+              <oj-option value=" ">(customer segment)</oj-option>
+              <oj-option value="Business Professionals">Business Professionals</oj-option>
+              <oj-option value="Database Administrators">Database Administrators</oj-option>
+              <oj-option value="infrastructure administrators">infrastructure administrators</oj-option>
+              <oj-option value="Line of Business professionals">Line of Business professionals</oj-option>
+            </oj-select-one>
+            who want to
+            <oj-select-one value="{{madlibTask}}" style="max-width:20em">
+              <oj-option value=" ">(task or problem</oj-option>
+              <oj-option value="improve business reliability">improve business reliability</oj-option>
+            </oj-select-one>
+            by
+            <oj-select-one value="{{madlibPainVerb}}" style="max-width:20em">
+              <oj-option value=" ">(pain verb)</oj-option>
+              <oj-option value="avoiding">avoiding</oj-option>
+            </oj-select-one>
+            <oj-select-one value="{{madlibPainPhrase}}" style="max-width:20em">
+                <oj-option value=" ">(pain noun)</oj-option>
+                <oj-option value="unnecessary additional costs">unnecessary additional costs</oj-option>
+            </oj-select-one>
+             and
+            <oj-select-one value="{{madlibTask}}" style="max-width:20em">
+                <oj-option value=" ">(gain verb)</oj-option>
+                <oj-option value="increasing">increasing</oj-option>
+            </oj-select-one>
+            <oj-select-one value="{{madlibTask}}" style="max-width:20em">
+                <oj-option value=" ">(gain noun)</oj-option>
+                <oj-option value="business security profile">business security profile</oj-option>
+            </oj-select-one>
+             . <!-- Unlike (competing value proposition). -->
+          </span>
         </div>
       </div>
     </div>

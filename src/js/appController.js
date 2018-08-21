@@ -18,9 +18,9 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
       self.router = oj.Router.rootInstance;
 
       self.router.configure({
-       'dashboard': {label: 'Dashboard', isDefault: true},
-       'incidents': {label: 'Incidents'},
-       'customers': {label: 'Customers'},
+       'dashboard': {label: 'Customer Context', isDefault: true},
+       'incidents': {label: 'Proposition'},
+       'customers': {label: 'Vision'},
        'profile': {label: 'Profile'},
        'about': {label: 'About'}
       });
@@ -45,8 +45,8 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
             moduleUtils.createViewModel({'viewModelPath':modelPath})
           ]);
           masterPromise.then(
-            function(values){ 
-              self.moduleConfig({'view':values[0],'viewModel':values[1]}); 
+            function(values){
+              self.moduleConfig({'view':values[0],'viewModel':values[1]});
             },
             function(reason){}
           );
@@ -56,16 +56,12 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
 
       // Navigation setup
       var navData = [
-      {name: 'Dashboard', id: 'dashboard',
+      {name: 'Context', id: 'dashboard',
        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-chart-icon-24'},
-      {name: 'Incidents', id: 'incidents',
+      {name: 'Proposition', id: 'incidents',
        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24'},
-      {name: 'Customers', id: 'customers',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-people-icon-24'},
-      {name: 'Profile', id: 'profile',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-person-icon-24'},
-      {name: 'About', id: 'about',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-info-icon-24'}
+      {name: 'Vision', id: 'customers',
+       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-people-icon-24'}
       ];
 
       self.navDataSource = new oj.ArrayTableDataSource(navData, {idAttribute: 'id'});
@@ -79,9 +75,9 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
         }
       };
 
-      // Method for adjusting the content area top/bottom paddings to avoid overlap with any fixed regions. 
+      // Method for adjusting the content area top/bottom paddings to avoid overlap with any fixed regions.
       // This method should be called whenever your fixed region height may change.  The application
-      // can also adjust content paddings with css classes if the fixed region height is not changing between 
+      // can also adjust content paddings with css classes if the fixed region height is not changing between
       // views.
       self.adjustContentPadding = function () {
         var topElem = document.getElementsByClassName('oj-applayout-fixed-top')[0];
@@ -94,6 +90,16 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
         if (bottomElem) {
           contentElem.style.paddingBottom = bottomElem.offsetHeight+'px';
         }
+
+        // Global data
+
+    // self.painItems = ko.observableArray([]);
+    // self.gainItems = ko.observableArray([]);
+    // self.jobItems = ko.observableArray([]);
+
+    // self.gainProvider = new oj.ArrayDataProvider(self.gainItems, { 'keyAttributes': 'id' });
+    // self.painProvider = new oj.ArrayDataProvider(self.painItems, { 'keyAttributes': 'id' });
+    // self.jobProvider = new oj.ArrayDataProvider(self.jobItems, { 'keyAttributes': 'id' });
         // Add oj-complete marker class to signal that the content area can be unhidden.
         // See the override.css file to see when the content area is hidden.
         contentElem.classList.add('oj-complete');
