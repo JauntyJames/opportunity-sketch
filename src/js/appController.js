@@ -19,8 +19,8 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
 
       self.router.configure({
        'dashboard': {label: 'Customer Context', isDefault: true},
-       'incidents': {label: 'Incidents'},
-       'customers': {label: 'Customers'},
+       'incidents': {label: 'Proposition'},
+       'customers': {label: 'Vision'},
        'profile': {label: 'Profile'},
        'about': {label: 'About'}
       });
@@ -61,11 +61,7 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojmodule-element-utils', 'ojs/ojknockout'
       {name: 'Proposition', id: 'incidents',
        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24'},
       {name: 'Vision', id: 'customers',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-people-icon-24'},
-      {name: 'Profile', id: 'profile',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-person-icon-24'},
-      {name: 'About', id: 'about',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-info-icon-24'}
+       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-people-icon-24'}
       ];
 
       self.navDataSource = new oj.ArrayTableDataSource(navData, {idAttribute: 'id'});

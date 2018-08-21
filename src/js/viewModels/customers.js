@@ -20,6 +20,16 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'appController', 'ojs/ojmodule-eleme
       // Below are a set of the ViewModel methods invoked by the oj-module component.
       // Please reference the oj-module jsDoc for additional information.
 
+    // page 3 data
+    this.madlibSolution = ko.observable("");
+    this.madlibSegment = ko.observable("");
+    this.madlibTask = ko.observable("");
+    this.madlibPainVerb = ko.observable("");
+    this.madlibPainPhrase = ko.observable("");
+    this.madlibGainVerb = ko.observable("");
+    this.madlibGainPhrase = ko.observable("");
+    this.madlibCompeting = ko.observable("");
+
       /**
        * Optional ViewModel method invoked after the View is inserted into the
        * document DOM.  The application can put logic that requires the DOM being

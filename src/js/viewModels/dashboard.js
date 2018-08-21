@@ -53,16 +53,6 @@ define([
     this.painRelieversProvider = new oj.ArrayDataProvider(this.painRelievers, { 'keyAttributes': 'id' });
     this.productsServicesProvider = new oj.ArrayDataProvider(this.productsServices, { 'keyAttributes': 'id' });
 
-    // page 3 data
-    this.madlibSolution = ko.observable("");
-    this.madlibSegment = ko.observable("");
-    this.madlibTask = ko.observable("");
-    this.madlibPainVerb = ko.observable("");
-    this.madlibPainPhrase = ko.observable("");
-    this.madlibGainVerb = ko.observable("");
-    this.madlibGainPhrase = ko.observable("");
-    this.madlibCompeting = ko.observable("");
-
     var lastItemId = this.allItems().length;
     var self = this;
 
